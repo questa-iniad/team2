@@ -35,7 +35,7 @@
 
 <body>
 <header id="header">
-    <p class="header"><img class="header" src="./logo_menu.png">Questa</p>
+    <p class="header">Logo</p>
 </header>
 
 <div class="openbtn"><span></span><span></span><span></span></div>
@@ -43,7 +43,9 @@
 <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
 <ul>
 <li><a href="#">Top</a></li> 
+<li>
 <div id="container" >
+  <h3>FirebaseUI Demo</h3>
   <div id="loading">Loading...</div>
   <div id="loaded" class="hidden">
     <div id="main">
@@ -81,6 +83,7 @@
         </p>
       </div>
       <div id="user-signed-out" class="hidden">
+        <h4>You are signed out.</h4>
         <!--
         <fieldset style="display: none;">
           <legend>Configuration</legend>
@@ -115,111 +118,106 @@
         </p>
       -->
         <div id="firebaseui-spa">
+          <h5>Single Page Application mode:</h5>
           <div id="firebaseui-container"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
+</li> 
 <li><a href="#">Service</a></li> 
 <li><a href="#">Contact</a></li> 
 </ul>
 </div>
 </nav>
 <div class="circle-bg"></div>
+
+
 <!--  ここから -->
 <div class="main">
-    <div class="left_box">
-      <div class="right_box moveleft"><p>左側に移動</p></div>
-      <div class="heart_box">
-        <div class="heart_on"></div><div class="heart_off"></div><p class="heart_num" style="display: none;">num</p>
+  <div class="left_box">
+    <div class="heart_box">
+      <div class="heart_on"></div><div class="heart_off"></div><p class="heart_num" style="display: none;">num</p>
+    </div>
+  </div>
+
+  <div class="middle_box">
+    <div class="item_box" style="height: 200px;"></div>
+    <div class="item_box">
+      <form style="display: none;" name="likeform" action="https://script.google.com/macros/s/AKfycbyEXVk8PA9ZgzR2FvV0gnezs11MrX1DOmAoVH2OU6d6u5bxKOO1qKu5Vl2GECnaVAskng/exec" method="POST" target="sendPhoto">
+        <input name="form" value="like">
+        <input name="form_like" class="form-like">
+        <input name="form_uid" class="form-uid uid" value="none">
+        <input name="form_Qid" class="form-Qid" value="none">
+        <input name="form_Aid" class="form-Aid">
+      </form>
+      <div id="detail_article"></div>
+      <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4><div class="modal-title" id="myModalLabel">回答投稿画面</div></h4>
+            </div>
+              <form
+                action="https://script.google.com/macros/s/AKfycbyEXVk8PA9ZgzR2FvV0gnezs11MrX1DOmAoVH2OU6d6u5bxKOO1qKu5Vl2GECnaVAskng/exec"
+                method="POST" target="sendPhoto" id="form" name="AnswerForm">
+                <div class="form-group modal-body">
+                    <label>フォームの種類<input name="form" value="answer"></label>
+                </div>
+                <div class="form-group modal-body">
+                    <label>uid<input name="form_uid" id="form-uid" value="none" class="uid"></label>
+                </div>
+                <div class="form-group modal-body">
+                    <label>Qid<input name="form_Qid" class="form-Qid" value="none"></label>
+                </div>
+                <div class="form-group modal-body">
+                    <label>Aid<input name="form_Aid" class="form-Aid"></label>
+                </div>
+                <div class="form_group modal-body">
+                    <label>内容<textarea name="form_text" id="form_text" value="内容" style="display: none;"></textarea>
+                        <div id="editor"></div></label>
+                </div>
+
+                <div class="form-group modal-footer">
+                    <input type="submit" value="送信する" class="btn btn-primary btn-send" data-dismiss="modal" id="btn-send">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                </div>
+              </form>
+              <iframe name="sendPhoto" style="width:0px;height:0px;border:0px;"></iframe>
+          </div>
+        </div>
       </div>
-    </div>
+        <div class="modal fade" id="test_point_Modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4><div class="modal-title" id="myModalPointLabel">ポイント送信画面</div></h4>
+                <form action="https://script.google.com/macros/s/AKfycbyEXVk8PA9ZgzR2FvV0gnezs11MrX1DOmAoVH2OU6d6u5bxKOO1qKu5Vl2GECnaVAskng/exec"
+                  method="POST" target="sendPhoto" id="point_form" name="AnswerForm">
+                  <div class="form-group modal-body">
+                    <label>送信ポイント<input name="form" value="point"></label>
+                  </div>
 
-    <div class="middle_box">
-        <div class="item_box" style="height: 200px;">
-        </div>
-        <div class="item_box">
-            <form style="display: none;" name="likeform" action="https://script.google.com/macros/s/AKfycbyEXVk8PA9ZgzR2FvV0gnezs11MrX1DOmAoVH2OU6d6u5bxKOO1qKu5Vl2GECnaVAskng/exec" method="POST" target="sendPhoto">
-              <input name="form" value="like">
-              <input name="form_like" class="form-like">
-              <input name="form_uid" class="form-uid uid" value="none">
-              <input name="form_Qid" class="form-Qid" value="none">
-              <input name="form_Aid" class="form-Aid">
-            </form>
-            <div id="detail_article"></div>
-            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4><div class="modal-title" id="myModalLabel">回答投稿画面</div></h4>
-                        </div>
-                        <form
-                            action="https://script.google.com/macros/s/AKfycbyEXVk8PA9ZgzR2FvV0gnezs11MrX1DOmAoVH2OU6d6u5bxKOO1qKu5Vl2GECnaVAskng/exec"
-                            method="POST" target="sendPhoto" id="form" name="AnswerForm">
-                            <div class="form-group modal-body">
-                                <label>フォームの種類<input name="form" value="answer"></label>
-                            </div>
-                            <div class="form-group modal-body">
-                                <label>uid<input name="form_uid" id="form--uid" value="none" class="uid"></label>
-                            </div>
-                            <div class="form-group modal-body">
-                                <label>Qid<input name="form_Qid" class="form-Qid" value="none"></label>
-                            </div>
-                            <div class="form-group modal-body">
-                                <label>Aid<input name="form_Aid" class="form-Aid"></label>
-                            </div>
-                            <div class="form_group modal-body">
-                                <label>内容<textarea name="form_text" id="form_text" value="内容" style="display: none;"></textarea>
-                                    <div id="editor"></div></label>
-                            </div>
-
-                            <div class="form-group modal-footer">
-                                <input type="submit" value="送信する" class="btn btn-primary btn-send" data-dismiss="modal" id="btn-send">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                            </div>
-                        </form>
-                        <iframe name="sendPhoto" style="width:0px;height:0px;border:0px;"></iframe>
-                    </div>
-                </div>
+                  <div class="form-group modal-footer">
+                    <input type="submit" value="送信する" class="btn btn-primary btn-send" data-dismiss="modal" id="btn-send">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="modal fade" id="testpointModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4><div class="modal-title">ポイント付与画面</div></h4>
-                        </div>
-                        <form
-                            action="https://script.google.com/macros/s/AKfycbyEXVk8PA9ZgzR2FvV0gnezs11MrX1DOmAoVH2OU6d6u5bxKOO1qKu5Vl2GECnaVAskng/exec"
-                            method="POST" target="sendPhoto" id="pointform" name="AnswerForm">
-                            <div class="form-group modal-body">
-                                <label>フォームの種類<input name="form" value="point"></label>
-                            </div>
-                            <div class="form-group modal-body">
-                                <label>uid<input name="form_uid" value="none" class="uid"></label>
-                            </div>
-                            <div class="form-group modal-body">
-                                <label>Qid<input name="form_Qid" class="form-Qid" value="none"></label>
-                            </div>
-                            <div class="form-group modal-body">
-                                <label>Aid<input name="form_Aid" class="form-Aid"></label>
-                            </div>
-
-                            <div class="form-group modal-footer">
-                                <input type="submit" value="送信する" class="btn btn-primary btn-sendpoint" data-dismiss="modal" id="btn-sendpoint">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div class="item_box" style="height: 200px;"></div>
         </div>
-        <div class="item_box" style="height: 200px;"></div>
+        <div class="right_box">
+
+        </div>
     </div>
-    <div class="right_box moveright">
-        
-    </div>
+  </div>
 </div>
+<!--  ここここまで -->
+
+
 
     <script>
 
@@ -346,9 +344,8 @@
                         if(GlobalUid==resultA[i].uid){
                           htmltext += '<a onclick="getpretext('+resultA[i].aid+')" class="btn btn-primary" data-toggle="modal" data-target="#testModal">編集</a>';
                         }
-                        htmltext += '<a onclick="FormGetAid('+resultA[i].aid+')" class="btn btn-primary" data-toggle="modal" data-target="#testpointModal">point</a>';
                         htmltext += '<div class="heart_box"><div class="heart_on '+resultA[i].aid+'" onclick="Onheart('+resultA[i].aid+')"></div><div style="display: none;" class="heart_off '+resultA[i].aid+'" onclick="Offheart('+resultA[i].aid+')"></div><p class="heart_num">'+resultA[i].like_sum+'</p></div>';
-                        
+                        htmltext += '<a onclick="getpretext('+resultA[i].aid+')" class="btn btn-primary" data-toggle="modal" data-target="#test_point_Modal">ポイント送信</a>';
                       }
                       else{
                         htmltext += '<p>'+resultA[i].uid+'</p>';
@@ -356,7 +353,7 @@
                         if(GlobalUid==resultA[i].uid){
                           htmltext += '<a onclick="getpretext('+resultA[i].aid+')" class="btn btn-primary" data-toggle="modal" data-target="#testModal">編集</a>';
                         }
-                        htmltext += '<a onclick="FormGetAid('+resultA[i].aid+')" class="btn btn-primary" data-toggle="modal" data-target="#testpointModal">point</a>';
+                        htmltext += '<a onclick="getpretext('+resultA[i].aid+')" class="btn btn-primary" data-toggle="modal" data-target="#test_point_Modal">ポイント送信</a>';
                         htmltext += '<div class="heart_box"><div style="display: none;" class="heart_on '+resultA[i].aid+'" onclick="Onheart('+resultA[i].aid+')"></div><div class="heart_off '+resultA[i].aid+'" onclick="Offheart('+resultA[i].aid+')"></div><p class="heart_num">'+resultA[i].like_sum+'</p></div>';
                       }
                     }
@@ -384,15 +381,18 @@
             $('#testModal').modal('hide');
             return false
         })
-        const $pointform = $('#pointform')
-        $('.btn-sendpoint').on('click', evt => {
-            $pointform.submit();
-            $pointform[0].reset();
+
+        const $point_form = $('#point_form')
+        $('.btn-send').on('click', evt => {
+            $("#form_text").val(quill.root.innerHTML);
+            $fpoint_formorm.submit();
+            $fopoint_formrm[0].reset();
+            //document.getElementById('form-Qid').value = url;
             for (var i = 0; i < form_Qid.length; i++){
               form_Qid[i].textContent= url;
               form_Qid[i].value= url;
             }
-            $('#testpointModal').modal('hide');
+            $('#test_point_Modal').modal('hide');
             return false
         })
 
