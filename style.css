@@ -13,11 +13,16 @@ img{
   font-size: 24px;
   color: #ff004b;
   font-weight: 400;
+  margin: -10px -30px 0px -10px;
+  padding:10px 30px 0px 10px;
+
 }
 .heart_on {
   font-size: 24px;
   color: #FF004B;
   font-weight: 900;
+  margin: -10px -30px 0px -10px;
+  padding:10px 30px 0px 10px;
   /*
   clip-path: path("M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z");
   transform: scale(1);
@@ -143,13 +148,23 @@ p.heart_num{
   #photo-container {
     height: 50px;
     width: 50px;
+    position: relative;
+    text-align: center;
   }
   
   #photo {
-    border-radius: 50px;
-    height: 50px;
-    margin: 0;
-    width: 50px;
+    border-radius: 40px;
+    height: 40px;
+    margin: 5px;
+    width: 40px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+  }
+  .fa-user-circle{
+    font-size: 40px;
+    color: #666;
+    margin: 5px;
   }
   
 
@@ -282,10 +297,11 @@ background-color: #666;
 
 .openbtn span:nth-of-type(1) {
 top:15px;	
+opacity: 0;
 }
 
 .openbtn span:nth-of-type(2) {
-
+opacity: 0;
 top: 31px;
 }
 
@@ -296,12 +312,14 @@ height: 0px;
 }
 
 .openbtn.active span:nth-of-type(1) {
+  opacity: 1;
   top: 18px;
   left: 18px;
   transform: translateY(6px) rotate(-45deg);
   width: 30%;
 }
 .openbtn.active span:nth-of-type(2){
+  opacity: 1;
   top: 30px;
   left: 18px;
   transform: translateY(-6px) rotate(45deg);
@@ -310,6 +328,7 @@ height: 0px;
 .openbtn.active span:nth-of-type(3) {
 opacity: 0;
 }
+
 
 
 
@@ -550,15 +569,31 @@ div.search_tag{
     background-color: #fff;
     border: solid 2px #ff8c00;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 12px;
+    list-style: none;
   }
   #like_Q_ranking{
     background-color: #fff;
     border: solid 2px #ff8c00;
     padding: 10px;
     margin-top: 20px;
-    border-radius: 6px;
+    border-radius: 12px;
+    list-style: none;
   }
+  #point_ranking p{
+    color: #ff8c00;
+    font-weight: 700;
+    margin: 0;
+    font-size: 18px;
+  }
+
+  #like_Q_ranking p{
+    color: #ff8c00;
+    font-weight: 700;
+    margin: 0;
+    font-size: 18px;
+  }
+
   .contents{
     border-radius: 12px;
     background-color: #fff;
@@ -571,4 +606,13 @@ div.search_tag{
     padding: 10px 10px;
     margin: 0 0 10px 0;
     color: #fff;
+  }
+  .modal-content{
+    border-radius: 12px;
+  }
+  a.fa-product-hunt{
+    font-size: 24px;
+    margin: -10px -30px -10px -10px;
+    padding:10px 30px 10px 10px;
+    color: #ff8c00;
   }
