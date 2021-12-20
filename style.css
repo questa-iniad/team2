@@ -8,8 +8,8 @@ img{
   font-size: 24px;
   color: #ff004b;
   font-weight: 900;
-  margin: -10px -30px 0px -10px;
-  padding: 10px 30px 0px 10px;
+  margin: -10px -30px -10px -10px;
+  padding: 10px 30px 10px 10px;
 }
 .heart_off {
   font-size: 24px;
@@ -39,6 +39,22 @@ img{
 }
 p.heart_num{
   margin-bottom: 0;
+}
+div.left_icon{
+  margin-right: auto;
+  vertical-align: top;
+  display: inline-block;
+  height: 26.33px;
+}
+.left_icon > a.btn_blue{
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 1.15;
+  height: 24px;
 }
 
 
