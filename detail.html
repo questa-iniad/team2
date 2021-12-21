@@ -42,7 +42,7 @@
 <header id="header">
   <a href="./index.html"><p class="header"><img class="header" src="./logo_menu.png">Questa</p></a>
 </header>
-<div class="bottom_right" data-toggle="modal" data-target="#testQModal" style="display: none;">
+<div class="bottom_right" data-toggle="modal" data-target="#testQModal" style="display: none;" onclick="reset_Q();">
   <span></span>
   <span></span>
   <a class="block-baloon-right"></a>
@@ -136,7 +136,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4><div class="modal-title" id="myModalLabel">回答</div></h4>
+                            <h4><div class="modal-title" id="myModalLabel">回答投稿・編集</div></h4>
                         </div>
                         <form
                             action="https://script.google.com/macros/s/AKfycbzWQ6ojGAvYrhWerWDPCO11Y_3VGqD_EYcSSyX5ZV7KIanzi-TXOHKsXUHsSBN5mgdiXw/exec"
@@ -213,7 +213,7 @@
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h4><div class="modal-title">新規質問</div></h4>
+                      <h4><div class="modal-title">質問投稿・編集</div></h4>
                   </div>
                   <form
                       action="https://script.google.com/macros/s/AKfycbzWQ6ojGAvYrhWerWDPCO11Y_3VGqD_EYcSSyX5ZV7KIanzi-TXOHKsXUHsSBN5mgdiXw/exec"
@@ -225,7 +225,7 @@
                           <label>uid<input name="uid" value="none" class="uid"></label>
                       </div>
                       <div class="form-group modal-body" style="display: none;">
-                          <label>Qid<input name="qid"></label>
+                          <label>Qid<input name="qid" class="Qform-Qid"></label>
                       </div>
                       <div class="form-group modal-body">
                           <label><input name="title" class="Q_title" placeholder="タイトルを入力してください"></label>
@@ -280,6 +280,12 @@
         //送信5秒後にjsonを再読み込み
         let btn = document.getElementById('btn-send');
           btn.addEventListener('click', function(){
+              window.setTimeout(function(){
+                  load_sheet();
+              }, 5000);
+        });
+        let btnQ = document.getElementById('btn-Qsend');
+          btnQ.addEventListener('click', function(){
               window.setTimeout(function(){
                   load_sheet();
               }, 5000);
@@ -352,7 +358,7 @@
                       if(GlobalUid==resultQ[0].uid){
                         htmltext += '<a onclick="getpreQuestion('+resultQ[0].qid+')" class="btn_blue" data-toggle="modal" data-target="#testQModal">編集</a>';
                       }
-                      htmltext += '<a onclick="FormGetAid(null)" class="btn_blue" data-toggle="modal" data-target="#testModal">回答する</a>';
+                      htmltext += '<a onclick="FormGetAid(null); reset_A();" class="btn_blue" data-toggle="modal" data-target="#testModal">回答する</a>';
                       htmltext +='</div><div><a href="" onclick="FormGetAid(0)" class="fab fa-product-hunt login_must" data-toggle="modal" data-target="#testpointModal"></a></div><p>'+fmt.format(BigInt((0+Number(resultQ[0].point))))+'</p><div class="far fa-heart heart_on 0" onclick="Onheart(0)"></div><div style="display: none;" class="far fa-heart heart_off 0" onclick="Offheart(0)"></div><p class="heart_num">'+fmt.format(BigInt((0+Number(resultQ[0].like_sum))))+'</p></div></div>';
                     }
                     else{
@@ -360,7 +366,7 @@
                       if(GlobalUid==resultQ[0].uid){
                         htmltext += '<a onclick="getpreQuestion('+resultQ[0].qid+')" class="btn_blue" data-toggle="modal" data-target="#testQModal">編集</a>';
                       }
-                      htmltext += '<a onclick="FormGetAid(null)" class="btn_blue" data-toggle="modal" data-target="#testModal">回答する</a>';
+                      htmltext += '<a onclick="FormGetAid(null); reset_A();" class="btn_blue" data-toggle="modal" data-target="#testModal">回答する</a>';
                       htmltext += '</div><div><a href="" onclick="FormGetAid(0)" class="fab fa-product-hunt login_must" data-toggle="modal" data-target="#testpointModal"></a></div><p>'+fmt.format(BigInt((0+Number(resultQ[0].point))))+'</p><div style="display: none;" class="far fa-heart heart_on 0" onclick="Onheart(0)"></div><div class="far fa-heart heart_off 0" onclick="Offheart(0)"></div><p class="heart_num">'+fmt.format(BigInt((0+Number(resultQ[0].like_sum))))+'</p></div></div>';
                     }
 
@@ -416,7 +422,7 @@
 
         load_sheet();
     
-        const $form = $('#form')
+        const $form = $('#form');
         $('.btn-send').on('click', evt => {
             $("#form_text").val(quill.root.innerHTML);
             $form.submit();
@@ -431,10 +437,11 @@
               elems[i].textContent= GlobalUid;
               elems[i].value= GlobalUid;
             }
+            quill.clipboard.dangerouslyPasteHTML('<p></p>');
             $('#testModal').modal('hide');
             return false
         })
-        const $pointform = $('#pointform')
+        const $pointform = $('#pointform');
         $('.btn-sendpoint').on('click', evt => {
             $pointform.submit();
             $pointform[0].reset();
@@ -450,23 +457,21 @@
             $('#testpointModal').modal('hide');
             return false
         })
-        const $Qform = $('#Qform')
+        const $Qform = $('#Qform');
         $('.btn-sendQ').on('click', evt => {
             $("#formQ_text").val(quillQ.root.innerHTML);
             $Qform.submit();
             $Qform[0].reset();
-            for (var i = 0; i < form_Qid.length; i++){
-              form_Qid[i].textContent= url;
-              form_Qid[i].value= url;
-            }
             var elems = document.getElementsByClassName('uid');
             for (var i = 0; i < elems.length; i++){
               elems[i].textContent= GlobalUid;
               elems[i].value= GlobalUid;
             }
+            quillQ.clipboard.dangerouslyPasteHTML('<p></p>');
             $('#testQModal').modal('hide');
             return false
         })
+
 
     </script>
     
